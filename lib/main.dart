@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/widgets/content_widgets/app_bar_widget.dart';
+import 'package:flutter_application_2/widgets/layout_widgets/stack_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: AppBarWidget(),
+      home: StackWidget(),
     );
   }
 }

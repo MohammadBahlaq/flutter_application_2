@@ -43,12 +43,9 @@ class AppBarWidget extends StatelessWidget {
         ],
         //! If you want to set raduis for appBar
         //? we will explain it next lesson
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-          ),
-        ),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+        // ),
       ),
 
       //? Don't foucus on it we will explain it later...

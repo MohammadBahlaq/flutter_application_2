@@ -10,12 +10,13 @@ class TextWidget extends StatelessWidget {
       //! [Center] widget to anything in the center of it's parent
       body: Center(
         child: Container(
-          color: Colors.black,
+          color: Colors.transparent,
           width: double.infinity,
           // height: 20,
           child: Text(
             //! text that you want to show
-            'Text Text Text Text Text Text2 Text2 Text2 Text2',
+            // 'Text Text Text Text Text Text2 Text2 Text2 Text2',
+            '50\$',
             //!text alignment in the parent
             //! [TextAlign.justify] to fill the rest line
             //! by adding spaces between words
@@ -32,6 +33,9 @@ class TextWidget extends StatelessWidget {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               fontFamily: 'Cairo',
+              decoration: TextDecoration.lineThrough,
+              decorationColor: Colors.blue,
+              decorationThickness: 2,
             ),
           ),
         ),
