@@ -14,19 +14,19 @@ class ListViewWidget extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
 
-      // body: ListView.separated(
-      //   itemCount: list.length,
-      //   reverse: false,
-      //   physics: BouncingScrollPhysics(),
-      //   scrollDirection: Axis.vertical,
-      //   // controller: ,
-      //   padding: EdgeInsets.all(10),
-      //   shrinkWrap: false,
-      //   separatorBuilder: (context, index) => SizedBox(height: 10),
-      //   itemBuilder: (context, index) {
-      //     return CustomWidget(index: index);
-      //   },
-      // ),
+      body: ListView.separated(
+        itemCount: list.length,
+        reverse: false,
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        // controller: ,
+        padding: EdgeInsets.all(10),
+        shrinkWrap: false,
+        separatorBuilder: (context, index) => SizedBox(height: 10),
+        itemBuilder: (context, index) {
+          return CustomWidget(index: index);
+        },
+      ),
 
       // body: SingleChildScrollView(
       //   child: Column(
@@ -60,37 +60,37 @@ class ListViewWidget extends StatelessWidget {
       //CustomScrollView //SliverList
 
       //!Column + SingleChildScrollView
-      body: ListView(
-        padding: EdgeInsets.all(15),
-        physics: BouncingScrollPhysics(),
-        reverse: true,
-        scrollDirection: Axis.vertical,
-        // shrinkWrap: true,
-        children: [
-          SizedBox(
-            height: 100,
-            child: ListView.builder(
-              itemBuilder: (context, index) => CustomWidget(index: index),
-            ),
-          ),
-          Container(height: 100, width: 100, color: Colors.red),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.blue),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.green),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.black),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.purple),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.yellow),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.brown),
-          SizedBox(width: 10),
-          Container(height: 100, width: 100, color: Colors.grey),
-          SizedBox(width: 10),
-        ],
-      ),
+      // body: ListView(
+      //   padding: EdgeInsets.all(15),
+      //   physics: BouncingScrollPhysics(),
+      //   reverse: true,
+      //   scrollDirection: Axis.vertical,
+      //   // shrinkWrap: true,
+      //   children: [
+      //     SizedBox(
+      //       height: 100,
+      //       child: ListView.builder(
+      //         itemBuilder: (context, index) => CustomWidget(index: index),
+      //       ),
+      //     ),
+      //     Container(height: 100, width: 100, color: Colors.red),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.blue),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.green),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.black),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.purple),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.yellow),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.brown),
+      //     SizedBox(width: 10),
+      //     Container(height: 100, width: 100, color: Colors.grey),
+      //     SizedBox(width: 10),
+      //   ],
+      // ),
 
       // body: SingleChildScrollView(
       //   child: Column(
@@ -262,7 +262,7 @@ class CustomWidget extends StatelessWidget {
       height: 80,
       width: double.infinity,
       color: Colors.red,
-      // margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10),
       alignment: Alignment.center,
       child: Text('$index', style: TextStyle(fontSize: 30)),
     );

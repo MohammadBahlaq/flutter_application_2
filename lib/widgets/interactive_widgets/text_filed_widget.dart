@@ -8,19 +8,34 @@ class TextFiledWidget extends StatefulWidget {
 }
 
 class _TextFiledWidgetState extends State<TextFiledWidget> {
+  late TextEditingController textEditingController;
+  late int counter;
+
+  @override
+  void initState() {
+    textEditingController = TextEditingController();
+    counter = 0;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('TextField widget')),
       body: Padding(
         padding: const EdgeInsets.all(20),
-
         child: TextFormField(
-          key: UniqueKey(),
+          // key: UniqueKey(),
           cursorColor: Colors.red,
           autofocus: false,
           enabled: true,
-          keyboardType: TextInputType.name,
+          keyboardType: TextInputType.number,
           // controller: TextEditingController(text: 'Bahlaq57@gmail.com'),
           readOnly: false,
           obscureText: false,
