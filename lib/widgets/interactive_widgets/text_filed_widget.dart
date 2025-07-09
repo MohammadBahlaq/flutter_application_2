@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class TextFiledWidget extends StatefulWidget {
@@ -13,7 +15,7 @@ class _TextFiledWidgetState extends State<TextFiledWidget> {
 
   @override
   void initState() {
-    textEditingController = TextEditingController();
+    textEditingController = TextEditingController(text: 'Mohammad Bahlaq');
     counter = 0;
     super.initState();
   }
@@ -36,7 +38,7 @@ class _TextFiledWidgetState extends State<TextFiledWidget> {
           autofocus: false,
           enabled: true,
           keyboardType: TextInputType.number,
-          // controller: TextEditingController(text: 'Bahlaq57@gmail.com'),
+          controller: textEditingController,
           readOnly: false,
           obscureText: false,
           inputFormatters: [
@@ -80,9 +82,15 @@ class _TextFiledWidgetState extends State<TextFiledWidget> {
             // prnt("onChanged: $text");
           },
           onTap: () {
-            // print("onTap");
+            log(textEditingController.text);
+
+            textEditingController.selection = TextSelection(
+              baseOffset: 0,
+              extentOffset: textEditingController.text.length,
+            );
           },
           onTapOutside: (event) {
+            textEditingController.clear();
             // print("onTapOutside");
           },
           onEditingComplete: () {

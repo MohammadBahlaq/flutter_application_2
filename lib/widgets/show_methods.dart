@@ -151,18 +151,19 @@ class ShowMethods extends StatelessWidget {
               onPressed: () {
                 ScaffoldMessenger.of(context).showMaterialBanner(
                   MaterialBanner(
-                    content: Text('Login Success'),
+                    content: Text('data'),
                     backgroundColor: Colors.red,
                     dividerColor: Colors.black,
+                    forceActionsBelow: true,
                     onVisible: () {
                       print("onVisible");
                     },
-                    leading: Icon(Icons.login),
-                    margin: EdgeInsets.all(20),
-                    elevation: 50,
+                    leading: Icon(Icons.note),
+                    margin: EdgeInsets.all(15),
                     shadowColor: Colors.blue,
-                    minActionBarHeight: 100,
-                    padding: EdgeInsets.all(20),
+                    elevation: 50,
+                    padding: EdgeInsets.all(15),
+                    minActionBarHeight: 50,
                     actions: [
                       IconButton(
                         onPressed: () {
@@ -183,38 +184,38 @@ class ShowMethods extends StatelessWidget {
               onPressed: () async {
                 TimeOfDay? timeOfDay = await showTimePicker(
                   context: context,
-                  initialTime: TimeOfDay(hour: 00, minute: 00),
-                  initialEntryMode: TimePickerEntryMode.dial,
-                  helpText: 'Please Select time',
+                  initialTime: TimeOfDay.now(),
+                  barrierColor: Colors.red,
+                  barrierDismissible: false,
                   // builder: (context, child) {
-                  //   return Theme(
-                  //     data: Theme.of(context).copyWith(
-                  //       colorScheme: ColorScheme.light(
-                  //         onPrimary: Colors.red,
-                  //         onSurface: Colors.purple,
-                  //       ),
-                  //       timePickerTheme: TimePickerThemeData(
-                  //         backgroundColor: Colors.white,
-                  //         dialBackgroundColor: Colors.grey,
-                  //         dialHandColor: Colors.green,
-                  //         // dialTextStyle: TextStyle(color: Colors.red),
-                  //         // dialTextColor: Colors.purple,
-                  //         helpTextStyle: TextStyle(color: Colors.red),
-                  //         cancelButtonStyle: TextButton.styleFrom(
-                  //           foregroundColor: Colors.purple,
-                  //         ),
-                  //         confirmButtonStyle: TextButton.styleFrom(
-                  //           foregroundColor: Colors.purple,
-                  //         ),
-                  //         hourMinuteColor: Colors.blue,
-                  //         hourMinuteTextColor: Colors.white,
-                  //         entryModeIconColor: Colors.amber,
-                  //         dayPeriodColor: Colors.yellow,
-                  //         dayPeriodTextStyle: TextStyle(color: Colors.brown),
-                  //       ),
+                  // return Theme(
+                  //   data: Theme.of(context).copyWith(
+                  //     colorScheme: ColorScheme.light(
+                  //       onPrimary: Colors.red,
+                  //       onSurface: Colors.purple,
                   //     ),
-                  //     child: child!,
-                  //   );
+                  //     timePickerTheme: TimePickerThemeData(
+                  //       backgroundColor: Colors.white,
+                  //       dialBackgroundColor: Colors.grey,
+                  //       dialHandColor: Colors.green,
+                  //       // dialTextStyle: TextStyle(color: Colors.red),
+                  //       // dialTextColor: Colors.purple,
+                  //       helpTextStyle: TextStyle(color: Colors.red),
+                  //       cancelButtonStyle: TextButton.styleFrom(
+                  //         foregroundColor: Colors.purple,
+                  //       ),
+                  //       confirmButtonStyle: TextButton.styleFrom(
+                  //         foregroundColor: Colors.purple,
+                  //       ),
+                  //       hourMinuteColor: Colors.blue,
+                  //       hourMinuteTextColor: Colors.white,
+                  //       entryModeIconColor: Colors.amber,
+                  //       dayPeriodColor: Colors.yellow,
+                  //       dayPeriodTextStyle: TextStyle(color: Colors.brown),
+                  //     ),
+                  //   ),
+                  //   child: child!,
+                  // );
                   // },
                 );
 
@@ -227,31 +228,49 @@ class ShowMethods extends StatelessWidget {
             ElevatedButton(
               child: Text('Show DatePicker'),
               onPressed: () async {
-                DateTime? dateTime = await showDatePicker(
+                showDatePicker(
                   context: context,
-                  initialDate: DateTime.now(),
                   firstDate: DateTime.now().subtract(Duration(days: 3)),
                   lastDate: DateTime.now().add(Duration(days: 3)),
-                  initialDatePickerMode: DatePickerMode.day,
-                  helpText: 'Please Select time',
-                  builder: (context, child) {
-                    return Theme(
-                      data: Theme.of(context).copyWith(
-                        colorScheme: ColorScheme.light(
-                          primary: Colors.red,
-                          onPrimary: Colors.blue,
-                          onSurface: Colors.green,
-                        ),
-                        datePickerTheme: DatePickerThemeData(),
-                      ),
-                      child: child!,
-                    );
+                  initialDate: DateTime.now(),
+                  currentDate: DateTime.now().add(Duration(days: 1)),
+                  barrierDismissible: false,
+                  // barrierColor: Colors.red,
+                  cancelText: "forget",
+                  confirmText: "Select",
+                  onDatePickerModeChange: (value) {
+                    print("onDatePickerModeChange");
                   },
+                  helpText: "Please Select Date",
+                  initialEntryMode: DatePickerEntryMode.inputOnly,
+                  keyboardType: TextInputType.datetime,
                 );
 
-                if (dateTime != null) {
-                  print(dateTime.toString());
-                }
+                // DateTime? dateTime = await showDatePicker(
+                //   context: context,
+                //   initialDate: DateTime.now(),
+                //   firstDate: DateTime.now().subtract(Duration(days: 3)),
+                //   lastDate: DateTime.now().add(Duration(days: 3)),
+                //   initialDatePickerMode: DatePickerMode.day,
+                //   helpText: 'Please Select time',
+                //   builder: (context, child) {
+                //     return Theme(
+                //       data: Theme.of(context).copyWith(
+                //         colorScheme: ColorScheme.light(
+                //           primary: Colors.red,
+                //           onPrimary: Colors.blue,
+                //           onSurface: Colors.green,
+                //         ),
+                //         datePickerTheme: DatePickerThemeData(),
+                //       ),
+                //       child: child!,
+                //     );
+                //   },
+                // );
+
+                // if (dateTime != null) {
+                //   print(dateTime.toString());
+                // }
               },
             ),
           ],
