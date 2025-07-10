@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/widgets/tile_widgets/switch_list_tile_widget.dart';
+import 'package:flutter_application_2/widgets/navigation_widgets/bottom_navigation_bar_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: SwitchListTileWidget(),
+      home: BottomNavigationBarWidget(),
     );
   }
 }
