@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/app_images.dart';
 
@@ -34,10 +35,10 @@ class DrawerWidget extends StatelessWidget {
       },
       onEndDrawerChanged: (isOpened) {},
 
-      drawerEnableOpenDragGesture: false,
+      drawerEnableOpenDragGesture: true,
 
-      // drawerDragStartBehavior: DragStartBehavior.down,
-      //Foucus text
+      drawerDragStartBehavior: DragStartBehavior.down,
+
       drawer: Drawer(
         backgroundColor: Colors.blue,
         elevation: 50,
@@ -62,51 +63,6 @@ class DrawerWidget extends StatelessWidget {
           ],
         ),
       ),
-
-      // drawer: Drawer(
-      //   child: ListView(
-      //     children: [
-      //       DrawerHeader(
-      //         duration: Duration(seconds: 1),
-      //         curve: Curves.linear,
-      //         margin: EdgeInsets.all(10),
-      //         padding: EdgeInsets.all(15),
-      //         decoration: BoxDecoration(
-      //           color: Colors.green,
-      //           border: Border.all(color: Colors.black, width: 2),
-      //         ),
-      //         child: CircleAvatar(
-      //           radius: 200,
-      //           backgroundImage: AssetImage(AppImages.garden),
-      //         ),
-      //       ),
-      //       ListTile(
-      //         onTap: () {
-      //           Navigator.of(context).pop();
-      //         },
-      //         leading: Icon(Icons.home),
-      //         trailing: Icon(Icons.arrow_forward_ios_rounded),
-      //         iconColor: Colors.white,
-      //         textColor: Colors.white,
-      //         title: Text("Home", style: TextStyle(color: Colors.white)),
-      //       ),
-      //       ListTile(
-      //         leading: Icon(Icons.person),
-      //         trailing: Icon(Icons.arrow_forward_ios_rounded),
-      //         iconColor: Colors.white,
-      //         textColor: Colors.white,
-      //         title: Text("Profile", style: TextStyle(color: Colors.white)),
-      //       ),
-      //       ListTile(
-      //         leading: Icon(Icons.favorite),
-      //         trailing: Icon(Icons.arrow_forward_ios_rounded),
-      //         iconColor: Colors.white,
-      //         textColor: Colors.white,
-      //         title: Text("Favorite", style: TextStyle(color: Colors.white)),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

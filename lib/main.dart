@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/get_it.dart';
+import 'package:flutter_application_2/sql_lite_view.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,8 +14,10 @@ void main() async {
   prefs = await SharedPreferences.getInstance();
 
   secureStorage = FlutterSecureStorage(
-    aOptions: const AndroidOptions(encryptedSharedPreferences: true),
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
+
+  setup();
 
   runApp(const MyApp());
 }
@@ -28,18 +32,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: PageOne(),
+      home: SqlLiteView(),
       routes: {
-        "PageOne": (_) => PageOne(),
-        "PageTwo": (_) => PageTwo(),
+        "/PageOne": (_) => PageOne(),
+        "PageTwo": (_) => PageTwo(name: ''),
         "PageThree": (_) => PageThree(),
       },
-
-      // routes: {
-      //   'pageOne': (_) => PageOne(),
-      //   'pageTwo': (_) => PageTwo(),
-      //   'pageThree': (_) => PageThree(),
-      // },
     );
   }
 }
