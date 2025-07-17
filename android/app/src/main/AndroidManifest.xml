@@ -1,14 +1,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
 xmlns:tools="http://schemas.android.com/tools"
     package="com.example.flutter_application_2"
     >
+    <!-- tThis lines for geolocator -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    
+    <!-- This lines for storge -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    
     <application
         android:label="flutter_application_2"
         android:name="${applicationName}"
         android:allowBackup="false"
         android:fullBackupOnly="false"
         android:icon="@mipmap/ic_launcher">
+        
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAJv7-m2yWLq-K3VMYgBTP5424oDThmGA4"/>
+
+
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -38,6 +57,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:value="2" />
 
 
+        <!-- This lines for OpenFileX -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -49,9 +69,31 @@ xmlns:tools="http://schemas.android.com/tools"
                 android:resource="@xml/filepaths"
                 tools:replace="android:resource" />
         </provider>
-
-
     </application>
+
+
+
+
+        <!-- This lines for URL launcher package -->
+            <!-- Provide required visibility configuration for API level 30 and above -->
+            <queries>
+            <!-- If your app checks for SMS support -->
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="sms" />
+            </intent>
+            <!-- If your app checks for call support -->
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="tel" />
+            </intent>
+            <!-- If your application checks for inAppBrowserView launch mode support -->
+            <intent>
+                <action android:name="android.support.customtabs.action.CustomTabsService" />
+            </intent>
+            </queries>
+
+
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
          https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.

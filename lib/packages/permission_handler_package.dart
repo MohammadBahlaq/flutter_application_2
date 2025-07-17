@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class PermissionHandlerPackage extends StatelessWidget {
   const PermissionHandlerPackage({super.key});
@@ -13,7 +16,16 @@ class PermissionHandlerPackage extends StatelessWidget {
           children: [
             ElevatedButton(
               child: Text('Request Camera permission'),
-              onPressed: () async {},
+              onPressed: () async {
+                var x = await Permission.camera.status;
+                log(x.toString());
+
+                if (await Permission.camera.isPermanentlyDenied) {
+                  PermissionStatus permissionStatus = await Permission.camera
+                      .request();
+                  log(permissionStatus.toString());
+                }
+              },
             ),
           ],
         ),
