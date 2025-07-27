@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/core/get_it.dart';
-import 'package:flutter_application_2/core/sql_lite.dart';
+import 'package:flutter_application_2/packages/local_storge/sql_lite.dart';
 
 class SqlLiteView extends StatelessWidget {
   const SqlLiteView({super.key});
@@ -21,23 +20,31 @@ class SqlLiteView extends StatelessWidget {
                   {"name": "Mohammad", "age": 30},
                 ];
 
-                getIt.get<SqlLiteDB>().insert("Students", data);
-              },
-            ),
-            ElevatedButton(
-              child: Text("Select"),
-              onPressed: () async {
-                getIt.get<SqlLiteDB>().getAll("Students");
+                // getIt.get<SqlLiteDB>().insert("Students", data);
+                SqlLiteDB.instance.insert("Students", data);
               },
             ),
             ElevatedButton(
               child: Text("Update"),
               onPressed: () {
-                getIt.get<SqlLiteDB>().update(
+                SqlLiteDB.instance.update(
                   "Students",
                   "name='Mohammad', age = 70",
                   'where age = 30',
                 );
+
+                // getIt.get<SqlLiteDB>().update(
+                //   "Students",
+                //   "name='Mohammad', age = 70",
+                //   'where age = 30',
+                // );
+              },
+            ),
+            ElevatedButton(
+              child: Text("Select"),
+              onPressed: () async {
+                // getIt.get<SqlLiteDB>().getAll("Students");
+                SqlLiteDB.instance.getAll("Students");
               },
             ),
             ElevatedButton(
@@ -53,8 +60,8 @@ class SqlLiteView extends StatelessWidget {
                 );
 
                 await Future.delayed(Duration(seconds: 3));
-                // await SqlLiteDB.instance.delete("Students", '');
-                await getIt.get<SqlLiteDB>().delete("Students", '');
+                await SqlLiteDB.instance.delete("Students", '');
+                // await getIt.get<SqlLiteDB>().delete("Students", '');
 
                 Navigator.pop(context);
               },

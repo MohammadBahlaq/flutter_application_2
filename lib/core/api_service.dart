@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -30,6 +31,8 @@ abstract class ApiService {
     ).replace(queryParameters: parameters);
 
     response = await http.get(uri, headers: headers);
+
+    log(response.body);
 
     return jsonDecode(response.body);
   }
