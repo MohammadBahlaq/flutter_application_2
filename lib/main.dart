@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/get_it.dart';
-import 'package:flutter_application_2/packages/location/google_maps.dart';
+import 'package:flutter_application_2/examples/read_from_excel.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:media_store_plus/media_store_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:short_navigation/short_navigation.dart';
@@ -13,6 +14,9 @@ late FlutterSecureStorage secureStorage;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await MediaStore.ensureInitialized();
+  MediaStore.appFolder = "MyAppFolder";
 
   prefs = await SharedPreferences.getInstance();
 
@@ -61,7 +65,7 @@ class MyApp extends StatelessWidget {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: MapSample(),
+            home: ReadFromExcel(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),

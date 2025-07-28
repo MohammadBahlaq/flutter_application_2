@@ -2,13 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- This lines for image gallary saver -->
+	<key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We need access to your photo library to save images.</string>
+
+	<!-- This lines for ImagePicker package -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to galary.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone.</string>
 
 	<!-- This lines for geolocator package -->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open.</string>
 	<key>UIBackgroundModes</key>
 		<array>
-  			<string>location</string>
+			<string>location</string>
 		</array>
 
 	<!-- This lindes for URL launcher package -->

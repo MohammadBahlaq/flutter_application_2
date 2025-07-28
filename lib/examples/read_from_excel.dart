@@ -64,6 +64,14 @@ class _ReadFromExcelState extends State<ReadFromExcel> {
       var bytes = file.readAsBytesSync();
       var excel = Excel.decodeBytes(bytes);
 
+      // for (var sheet in excel.tables.keys) {
+      //   for (var row in excel.tables[sheet]!.rows) {
+      //     for (var cell in row) {
+      //       log(cell.toString());
+      //     }
+      //   }
+      // }
+
       List<List<String>> rows = [];
 
       for (var table in excel.tables.keys) {
