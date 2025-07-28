@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/examples/read_from_excel.dart';
@@ -14,6 +15,8 @@ late FlutterSecureStorage secureStorage;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  EasyLocalization.logger.enableBuildModes = [];
 
   await MediaStore.ensureInitialized();
   MediaStore.appFolder = "MyAppFolder";
@@ -26,7 +29,15 @@ void main() async {
 
   setup();
 
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('en'),
+
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,6 +57,10 @@ class MyApp extends StatelessWidget {
         shouldRebuild: (previous, next) => true,
         builder: (context, themeMode, child) {
           return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+
             debugShowCheckedModeBanner: false,
             themeMode: themeMode,
             navigatorKey: Go.navigatorKey,

@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -113,14 +114,63 @@ class _ReadFromExcelState extends State<ReadFromExcel> {
               onPressed: _pickAndReadExcelFile,
               child: Text("Pick Excel File"),
             ),
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: excelData.length,
-            //     itemBuilder: (context, rowIndex) {
-            //       return ListTile(title: Text(excelData[rowIndex].join(" | ")));
-            //     },
-            //   ),
-            // ),
+            Text("Hello".tr()),
+            ElevatedButton(
+              onPressed: () {
+                log(context.deviceLocale.languageCode);
+
+                if (context.locale.languageCode == "en") {
+                  context.setLocale(Locale("ar"));
+                } else {
+                  context.setLocale(Locale("en"));
+                }
+              },
+              child: Text("Change local"),
+            ),
+            ElevatedButton(
+              child: Text('Show DatePicker'),
+              onPressed: () async {
+                DateTime? date = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime.now().subtract(Duration(days: 3)),
+                  lastDate: DateTime.now().add(Duration(days: 3)),
+                  initialDate: DateTime.now(),
+                  currentDate: DateTime.now().add(Duration(days: 1)),
+                  barrierDismissible: false,
+                  // barrierColor: Colors.red,
+                  cancelText: "forget",
+                  confirmText: "Select",
+                  onDatePickerModeChange: (value) {
+                    print("onDatePickerModeChange");
+                  },
+                  helpText: "Please Select Date",
+                  initialEntryMode: DatePickerEntryMode.inputOnly,
+                  keyboardType: TextInputType.datetime,
+                );
+
+                log(date.toString());
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                log(DateTime.now().toString());
+                log(
+                  DateFormat(
+                    "yyyy/MM/dd => HH:mm:ss",
+                    "ar",
+                  ).format(DateTime.now()),
+                );
+
+                String date = "2025/7/28 4:50:7.5";
+
+                DateTime dateTime = DateFormat(
+                  "yyyy/MM/dd HH:mm:ss",
+                ).parse(date);
+
+                log(DateFormat("yyyy-MM-dd HH:mm:ss").format(dateTime));
+              },
+              child: Text("Formate Date"),
+            ),
           ],
         ),
       ),

@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- This lines for easy_localization package -->
+	<key>CFBundleLocalizations</key>
+		<array>
+			<string>en</string>
+			<string>nb</string>
+		</array>
+
 	<!-- This lines for image gallary saver -->
 	<key>NSPhotoLibraryAddUsageDescription</key>
     <string>We need access to your photo library to save images.</string>
