@@ -1,8 +1,13 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/get_it.dart';
+import 'package:flutter_application_2/firebase_options.dart';
+import 'package:flutter_application_2/packages/firebase_crashes.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
-import 'package:flutter_application_2/widgets/animated_postioned_widget.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:media_store_plus/media_store_plus.dart';
@@ -15,6 +20,20 @@ late FlutterSecureStorage secureStorage;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableBuildModes = [];
 
@@ -80,7 +99,7 @@ class MyApp extends StatelessWidget {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: AnimatedPostionedWidget(),
+            home: FirebaseCrashes(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),
