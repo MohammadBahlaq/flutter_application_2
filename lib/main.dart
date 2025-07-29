@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/get_it.dart';
-import 'package:flutter_application_2/packages/local_auth.dart';
+import 'package:flutter_application_2/packages/barcode/barcode_widget_package.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: LocalAuth(),
+            home: BarcodeWidgetPackage(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),
