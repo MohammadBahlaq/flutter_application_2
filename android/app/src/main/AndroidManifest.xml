@@ -24,7 +24,7 @@ xmlns:tools="http://schemas.android.com/tools"
         android:name="${applicationName}"
         android:allowBackup="false"
         android:fullBackupOnly="false"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyAJv7-m2yWLq-K3VMYgBTP5424oDThmGA4"/>
