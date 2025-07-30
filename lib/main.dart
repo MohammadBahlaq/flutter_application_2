@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/view/show_posts_view.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/firebase_options.dart';
-import 'package:flutter_application_2/packages/firebase_crashes.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -34,6 +35,14 @@ void main() async {
     return true;
   };
 
+  await FirebaseRemoteConfig.instance.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(minutes: 5),
+    ),
+  );
+  await FirebaseRemoteConfig.instance.fetchAndActivate();
+
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableBuildModes = [];
 
@@ -59,8 +68,18 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +118,7 @@ class MyApp extends StatelessWidget {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: FirebaseCrashes(),
+            home: ShowPostsView(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),
