@@ -5,11 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/observer.dart';
 import 'package:flutter_application_2/bloc/view/show_posts_view.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/firebase_options.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:media_store_plus/media_store_plus.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,8 @@ void main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
+  Bloc.observer = Observer();
 
   await FirebaseRemoteConfig.instance.setConfigSettings(
     RemoteConfigSettings(

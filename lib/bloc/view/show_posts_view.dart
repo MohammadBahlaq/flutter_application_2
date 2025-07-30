@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_cubit.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_state.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_cubit.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_state_cubit.dart';
 import 'package:flutter_application_2/bloc/view/create_post_view.dart';
 import 'package:flutter_application_2/bloc/view/show_comments_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +16,10 @@ class ShowPostsView extends StatelessWidget {
       child: Builder(
         builder: (context) {
           final postCrt = context.read<PostCubit>();
+          // final postCrtBloc = context.read<PostBloc>();
+          // postCrtBloc.add(GetPosts());
+          // postCrtBloc.add(GetComments(postId: 5));
+
           // final postCrt = context.watch<PostCubit>();
           // final postCrt = BlocProvider.of<PostCubit>(context,listen: false);
           // final postCrt = BlocProvider.of<PostCubit>(context,listen: true);
@@ -30,17 +34,17 @@ class ShowPostsView extends StatelessWidget {
                 );
               },
             ),
-            body: BlocBuilder<PostCubit, PostState>(
+            body: BlocBuilder<PostCubit, PostStateCubit>(
               builder: (_, state) {
-                if (state is PostLoading) {
+                if (state is PostLoadingCubit) {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if (state is PostFail) {
+                if (state is PostFailCubit) {
                   return Center(child: Text("Error"));
                 }
 
-                if (state is PostSuccess) {
+                if (state is PostSuccessCubit) {
                   return ListView.builder(
                     itemCount: state.posts.length,
                     itemBuilder: (context, index) {

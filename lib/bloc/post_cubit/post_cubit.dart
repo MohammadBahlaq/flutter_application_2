@@ -1,28 +1,32 @@
 import 'package:flutter_application_2/api/model/comment_model.dart';
 import 'package:flutter_application_2/api/model/new_post_model.dart';
 import 'package:flutter_application_2/api/model/post_model.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_state.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_state_cubit.dart';
 import 'package:flutter_application_2/core/api_service.dart';
 import 'package:flutter_application_2/core/endpoints.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PostCubit extends Cubit<PostState> {
-  PostCubit() : super(PostInitial());
+class PostCubit extends Cubit<PostStateCubit> {
+  PostCubit() : super(PostInitialCubit());
 
   Future<void> getPosts() async {
-    emit(PostLoading());
+    emit(PostLoadingCubit());
 
     try {
       List data = await ApiService.get(Endpoints.posts);
 
-      emit(PostSuccess(posts: data.map((e) => PostModel.fromJson(e)).toList()));
+      emit(
+        PostSuccessCubit(
+          posts: data.map((e) => PostModel.fromJson(e)).toList(),
+        ),
+      );
     } catch (e) {
-      emit(PostFail(errorMessage: e.toString()));
+      emit(PostFailCubit(errorMessage: e.toString()));
     }
   }
 
   Future<void> getComments(int postId) async {
-    emit(PostLoading());
+    emit(PostLoadingCubit());
 
     try {
       List data = await ApiService.get(
@@ -31,17 +35,17 @@ class PostCubit extends Cubit<PostState> {
       );
 
       emit(
-        PostSuccess(
+        PostSuccessCubit(
           comments: data.map((e) => CommentModel.fromJson(e)).toList(),
         ),
       );
     } catch (e) {
-      emit(PostFail(errorMessage: e.toString()));
+      emit(PostFailCubit(errorMessage: e.toString()));
     }
   }
 
   Future<void> createPost(NewPostModel newPost) async {
-    emit(PostLoading());
+    emit(PostLoadingCubit());
 
     try {
       Map<String, dynamic> map = await ApiService.post(
@@ -49,13 +53,13 @@ class PostCubit extends Cubit<PostState> {
         body: newPost.toJson(),
       );
 
-      if (map.isNotEmpty) {
+      if (map.isEmpty) {
         throw "throw Error";
       }
 
-      emit(PostSuccess());
+      emit(PostSuccessCubit());
     } catch (e) {
-      emit(PostFail(errorMessage: e.toString()));
+      emit(PostFailCubit(errorMessage: e.toString()));
     }
   }
 }

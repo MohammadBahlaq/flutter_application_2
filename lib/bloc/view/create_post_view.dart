@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/api/model/new_post_model.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_cubit.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_state.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_cubit.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_state_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:short_navigation/short_navigation.dart';
 
@@ -54,7 +54,7 @@ class _CreatePostViewState extends State<CreatePostView> {
               decoration: InputDecoration(border: OutlineInputBorder()),
             ),
           ),
-          BlocBuilder<PostCubit, PostState>(
+          BlocBuilder<PostCubit, PostStateCubit>(
             buildWhen: (previous, current) {
               if (previous.runtimeType == current.runtimeType) {
                 return false;
@@ -63,7 +63,7 @@ class _CreatePostViewState extends State<CreatePostView> {
               return true;
             },
             builder: (_, state) {
-              if (state is PostLoading) {
+              if (state is PostLoadingCubit) {
                 return CircularProgressIndicator.adaptive();
               }
 
@@ -81,27 +81,27 @@ class _CreatePostViewState extends State<CreatePostView> {
               );
             },
           ),
-          BlocListener<PostCubit, PostState>(
+          BlocListener<PostCubit, PostStateCubit>(
             listenWhen: (previous, current) {
               return true;
             },
             listener: (context, state) {},
             child: SizedBox(),
           ),
-          BlocConsumer<PostCubit, PostState>(
+          BlocConsumer<PostCubit, PostStateCubit>(
             buildWhen: (previous, current) => true,
             listenWhen: (previous, current) => true,
             listener: (_, state) {
-              if (state is PostLoading) {
+              if (state is PostLoadingCubit) {
                 GoMessenger.dialog(AlertDialog(content: Text("Loading...")));
               }
 
-              if (state is PostSuccess) {
+              if (state is PostSuccessCubit) {
                 Go.back();
                 GoMessenger.dialog(AlertDialog(content: Text("Success")));
               }
 
-              if (state is PostFail) {
+              if (state is PostFailCubit) {
                 Go.back();
                 GoMessenger.dialog(
                   AlertDialog(content: Text(state.errorMessage)),
@@ -109,10 +109,10 @@ class _CreatePostViewState extends State<CreatePostView> {
               }
             },
             builder: (_, state) {
-              if (state is PostFail) {
+              if (state is PostFailCubit) {
                 return Text(state.errorMessage);
               }
-              if (state is PostSuccess) {
+              if (state is PostSuccessCubit) {
                 return Text("Success");
               }
               return SizedBox();

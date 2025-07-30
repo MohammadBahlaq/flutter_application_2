@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_cubit.dart';
-import 'package:flutter_application_2/bloc/cubits/post_cubit/post_state.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_cubit.dart';
+import 'package:flutter_application_2/bloc/post_cubit/post_state_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowComments extends StatelessWidget {
@@ -12,17 +12,17 @@ class ShowComments extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Comments")),
-      body: BlocBuilder<PostCubit, PostState>(
+      body: BlocBuilder<PostCubit, PostStateCubit>(
         builder: (_, state) {
-          if (state is PostLoading) {
+          if (state is PostLoadingCubit) {
             return LinearProgressIndicator();
           }
 
-          if (state is PostFail) {
+          if (state is PostFailCubit) {
             return Center(child: Text("Error"));
           }
 
-          if (state is PostSuccess) {
+          if (state is PostSuccessCubit) {
             return ListView.builder(
               itemCount: state.comments.length,
               itemBuilder: (context, index) {
