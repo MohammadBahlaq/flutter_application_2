@@ -151,26 +151,6 @@ class _ReadFromExcelState extends State<ReadFromExcel> {
                 log(date.toString());
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                log(DateTime.now().toString());
-                log(
-                  DateFormat(
-                    "yyyy/MM/dd => HH:mm:ss",
-                    "ar",
-                  ).format(DateTime.now()),
-                );
-
-                String date = "2025/7/28 4:50:7.5";
-
-                DateTime dateTime = DateFormat(
-                  "yyyy/MM/dd HH:mm:ss",
-                ).parse(date);
-
-                log(DateFormat("yyyy-MM-dd HH:mm:ss").format(dateTime));
-              },
-              child: Text("Formate Date"),
-            ),
           ],
         ),
       ),

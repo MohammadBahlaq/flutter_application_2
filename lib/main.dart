@@ -6,9 +6,9 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/bloc/observer.dart';
-import 'package:flutter_application_2/bloc/view/show_posts_view.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/firebase_options.dart';
+import 'package:flutter_application_2/packages/dateformate.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,7 +122,7 @@ class _MyAppState extends State<MyApp> {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: ShowPostsView(),
+            home: DateformateExample(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),

@@ -58,7 +58,17 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             // if (image.isNotEmpty) Image.asset(image),
             Center(
               child: DropdownMenu(
-                dropdownMenuEntries: list,
+                /// step 1: students.where((s) => s.age > 20)
+                /// step 2: .map<DropdownMenuEntry>((std) => DropdownMenuEntry(value: std.name, label: "${std.age}")).toList()
+                dropdownMenuEntries: students
+                    .where((s) => s.age > 17)
+                    .map<DropdownMenuEntry>(
+                      (std) => DropdownMenuEntry(
+                        value: std.name,
+                        label: "${std.age}",
+                      ),
+                    )
+                    .toList(),
                 menuHeight: 300,
                 width: 300,
                 label: Text('Country'),
@@ -103,4 +113,26 @@ class _DropDownWidgetState extends State<DropDownWidget> {
       ),
     );
   }
+}
+
+List<Student> students = [
+  Student(name: "Aohn", age: 20),
+  Student(name: "Bane", age: 19),
+  Student(name: "Zim", age: 18),
+  Student(name: "Kill", age: 19),
+  Student(name: "Lohn", age: 17),
+  Student(name: "Gane", age: 13),
+  Student(name: "Jim", age: 15),
+  Student(name: "Hill", age: 23),
+  Student(name: "Mohn", age: 20),
+  Student(name: "Cane", age: 21),
+  Student(name: "Dim", age: 22),
+  Student(name: "Fill", age: 23),
+];
+
+class Student {
+  final String name;
+  final int age;
+
+  Student({required this.name, required this.age});
 }
