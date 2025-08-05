@@ -19,6 +19,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+        packagingOptions {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE.txt",
+                "META-INF/NOTICE",
+                "META-INF/LICENSE",
+                "META-INF/DEPENDENCIES"
+            )
+        }
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
