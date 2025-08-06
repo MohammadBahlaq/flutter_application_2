@@ -70,6 +70,7 @@ dependencies:
   artemis_zebra: ^0.0.1
   dio: ^5.8.0+1
   web_socket_channel: ^3.0.3
+  socket_io_client: ^3.1.2
 
 dependency_overrides:
   http: ^1.0.0
