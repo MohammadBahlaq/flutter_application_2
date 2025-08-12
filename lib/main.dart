@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/bloc/observer.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/firebase_options.dart';
-import 'package:flutter_application_2/packages/socket_io_client/socket_io_example.dart';
+import 'package:flutter_application_2/packages/flutter_local_notifications/local_notification_page.dart';
+import 'package:flutter_application_2/packages/flutter_local_notifications/local_notifications.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,8 @@ late FlutterSecureStorage secureStorage;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  NotificationsService.instance.init();
 
   // Pass all uncaught "fatal" errors from the framework to Crashlytics
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -122,7 +125,7 @@ class _MyAppState extends State<MyApp> {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: SocketIoExample(),
+            home: LocalNotificationPage(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),
