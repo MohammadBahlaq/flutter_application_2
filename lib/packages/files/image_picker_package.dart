@@ -118,11 +118,7 @@ class _ImagePickerPackageState extends State<ImagePickerPackage> {
       // log("saveInfo: $saveInfo");
 
       //! Save Image using gal package
-      await Gal.putImage(
-        image.path,
-        album:
-            "/storage/emulated/0/Download/image.${image.path.split('.').last}",
-      );
+      await Gal.putImage(image.path, album: "image.path");
     }
   }
 
