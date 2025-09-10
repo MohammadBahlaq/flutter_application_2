@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:media_store_plus/media_store_plus.dart';
 import 'package:video_player/video_player.dart';
@@ -106,13 +107,21 @@ class _ImagePickerPackageState extends State<ImagePickerPackage> {
       // log(path);
       setState(() {});
 
-      MediaStore mediaStore = MediaStore();
+      //! Save Image using MediaStore package
+      // MediaStore mediaStore = MediaStore();
+      // SaveInfo? saveInfo = await mediaStore.saveFile(
+      //   tempFilePath: image.path,
+      //   dirType: DirType.photo,
+      //   dirName: DirName.pictures,
+      //   // relativePath: "Test Images",
+      // );
+      // log("saveInfo: $saveInfo");
 
-      SaveInfo? saveInfo = await mediaStore.saveFile(
-        tempFilePath: image.path,
-        dirType: DirType.photo,
-        dirName: DirName.pictures,
-        // relativePath: "Test Images",
+      //! Save Image using gal package
+      await Gal.putImage(
+        image.path,
+        album:
+            "/storage/emulated/0/Download/image.${image.path.split('.').last}",
       );
     }
   }

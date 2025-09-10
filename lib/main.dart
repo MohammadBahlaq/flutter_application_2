@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/bloc/observer.dart';
 import 'package:flutter_application_2/core/get_it.dart';
 import 'package:flutter_application_2/firebase_options.dart';
-import 'package:flutter_application_2/packages/flutter_local_notifications/local_notification_page.dart';
+import 'package:flutter_application_2/packages/files/image_picker_package.dart';
 import 'package:flutter_application_2/packages/flutter_local_notifications/local_notifications.dart';
 import 'package:flutter_application_2/provider/controller/theme_controller.dart';
 import 'package:flutter_application_2/widgets/navigation_widgets/navigation.dart';
@@ -125,7 +125,7 @@ class _MyAppState extends State<MyApp> {
               // dialogTheme: DialogThemeData(),
               // scaffoldBackgroundColor: Colors.blue,
             ),
-            home: LocalNotificationPage(),
+            home: ImagePickerPackage(),
             routes: {
               "/PageOne": (_) => PageOne(),
               "PageTwo": (_) => PageTwo(name: ''),
