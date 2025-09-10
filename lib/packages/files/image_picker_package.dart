@@ -118,7 +118,7 @@ class _ImagePickerPackageState extends State<ImagePickerPackage> {
       // log("saveInfo: $saveInfo");
 
       //! Save Image using gal package
-      await Gal.putImage(image.path, album: "image.path");
+      await Gal.putImage(image.path);
     }
   }
 
